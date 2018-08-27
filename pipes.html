@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R style guide</title>
+  <meta name="description" content="R style guide">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R style guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R style guide" />
+  
+  
+  
+
+<meta name="author" content="">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="settings/dq-icon-or-rgb.svg" type="image/x-icon">
+<link rel="prev" href="functions.html">
+<link rel="next" href="help-pages.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="settings/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="margin-top: 0.2cm; margin-bottom: 0.1cm;">&nbsp; &nbsp; <img src="daqana-or-rgb.svg" width="180"> R style guide</p>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lintr-and-styler"><i class="fa fa-check"></i>lintr and styler</a></li>
+</ul></li>
+<li class="part"><span><b>I Analyses</b></span></li>
+<li class="chapter" data-level="1" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>1</b> Files</a><ul>
+<li class="chapter" data-level="1.1" data-path="files.html"><a href="files.html#names"><i class="fa fa-check"></i><b>1.1</b> Names</a></li>
+<li class="chapter" data-level="1.2" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>1.2</b> Paths</a></li>
+<li class="chapter" data-level="1.3" data-path="files.html"><a href="files.html#structure"><i class="fa fa-check"></i><b>1.3</b> Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="files.html"><a href="files.html#cleaning-up"><i class="fa fa-check"></i><b>1.4</b> Cleaning up</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Syntax.html"><a href="Syntax.html"><i class="fa fa-check"></i><b>2</b> Syntax</a><ul>
+<li class="chapter" data-level="2.1" data-path="Syntax.html"><a href="Syntax.html#object-names"><i class="fa fa-check"></i><b>2.1</b> Object names</a></li>
+<li class="chapter" data-level="2.2" data-path="Syntax.html"><a href="Syntax.html#spacing"><i class="fa fa-check"></i><b>2.2</b> Spacing</a></li>
+<li class="chapter" data-level="2.3" data-path="Syntax.html"><a href="Syntax.html#Indenting"><i class="fa fa-check"></i><b>2.3</b> Indenting</a></li>
+<li class="chapter" data-level="2.4" data-path="Syntax.html"><a href="Syntax.html#long-lines"><i class="fa fa-check"></i><b>2.4</b> Long lines</a></li>
+<li class="chapter" data-level="2.5" data-path="Syntax.html"><a href="Syntax.html#assignment"><i class="fa fa-check"></i><b>2.5</b> Assignment</a></li>
+<li class="chapter" data-level="2.6" data-path="Syntax.html"><a href="Syntax.html#semicolons"><i class="fa fa-check"></i><b>2.6</b> Semicolons</a></li>
+<li class="chapter" data-level="2.7" data-path="Syntax.html"><a href="Syntax.html#quotes"><i class="fa fa-check"></i><b>2.7</b> Quotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> Functions</a><ul>
+<li class="chapter" data-level="3.1" data-path="functions.html"><a href="functions.html#naming"><i class="fa fa-check"></i><b>3.1</b> Naming</a></li>
+<li class="chapter" data-level="3.2" data-path="functions.html"><a href="functions.html#function-head-body"><i class="fa fa-check"></i><b>3.2</b> Head and body</a></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html#argument-names"><i class="fa fa-check"></i><b>3.3</b> Argument names</a></li>
+<li class="chapter" data-level="3.4" data-path="functions.html"><a href="functions.html#return"><i class="fa fa-check"></i><b>3.4</b> <code>return()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="functions.html"><a href="functions.html#comments"><i class="fa fa-check"></i><b>3.5</b> Comments</a></li>
+<li class="chapter" data-level="3.6" data-path="functions.html"><a href="functions.html#design"><i class="fa fa-check"></i><b>3.6</b> Design</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>4</b> Pipes</a><ul>
+<li class="chapter" data-level="" data-path="pipes.html"><a href="pipes.html#please-note"><i class="fa fa-check"></i>Please note</a></li>
+<li class="chapter" data-level="4.1" data-path="pipes.html"><a href="pipes.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="pipes.html"><a href="pipes.html#spacing-and-indenting"><i class="fa fa-check"></i><b>4.2</b> Spacing and indenting</a></li>
+<li class="chapter" data-level="4.3" data-path="pipes.html"><a href="pipes.html#no-arguments"><i class="fa fa-check"></i><b>4.3</b> No arguments</a></li>
+<li class="chapter" data-level="4.4" data-path="pipes.html"><a href="pipes.html#long-lines-1"><i class="fa fa-check"></i><b>4.4</b> Long lines</a></li>
+<li class="chapter" data-level="4.5" data-path="pipes.html"><a href="pipes.html#assignment-1"><i class="fa fa-check"></i><b>4.5</b> Assignment</a></li>
+</ul></li>
+<li class="part"><span><b>II Packages</b></span></li>
+<li class="chapter" data-level="5" data-path="help-pages.html"><a href="help-pages.html"><i class="fa fa-check"></i><b>5</b> Help Pages</a><ul>
+<li class="chapter" data-level="5.1" data-path="help-pages.html"><a href="help-pages.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="help-pages.html"><a href="help-pages.html#title-and-description"><i class="fa fa-check"></i><b>5.2</b> Title and Description</a></li>
+<li class="chapter" data-level="5.3" data-path="help-pages.html"><a href="help-pages.html#indention"><i class="fa fa-check"></i><b>5.3</b> Indention</a></li>
+<li class="chapter" data-level="5.4" data-path="help-pages.html"><a href="help-pages.html#documenting-parameters"><i class="fa fa-check"></i><b>5.4</b> Documenting Parameters</a></li>
+<li class="chapter" data-level="5.5" data-path="help-pages.html"><a href="help-pages.html#capitalization-and-full-stops"><i class="fa fa-check"></i><b>5.5</b> Capitalization and Full Stops</a></li>
+<li class="chapter" data-level="5.6" data-path="help-pages.html"><a href="help-pages.html#reference"><i class="fa fa-check"></i><b>5.6</b> Reference</a></li>
+<li class="chapter" data-level="5.7" data-path="help-pages.html"><a href="help-pages.html#line-break"><i class="fa fa-check"></i><b>5.7</b> Line Break</a></li>
+<li class="chapter" data-level="5.8" data-path="help-pages.html"><a href="help-pages.html#code-font"><i class="fa fa-check"></i><b>5.8</b> Code Font</a></li>
+<li class="chapter" data-level="5.9" data-path="help-pages.html"><a href="help-pages.html#internal-functions"><i class="fa fa-check"></i><b>5.9</b> Internal Functions</a></li>
+<li class="chapter" data-level="5.10" data-path="help-pages.html"><a href="help-pages.html#deprecating-functions"><i class="fa fa-check"></i><b>5.10</b> Deprecating Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit Tests</a><ul>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#file-names"><i class="fa fa-check"></i><b>6.2</b> File names</a></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#structure-1"><i class="fa fa-check"></i><b>6.3</b> Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="unit-tests.html"><a href="unit-tests.html#context"><i class="fa fa-check"></i><b>6.4</b> Context</a></li>
+<li class="chapter" data-level="6.5" data-path="unit-tests.html"><a href="unit-tests.html#property-test"><i class="fa fa-check"></i><b>6.5</b> Property test</a></li>
+<li class="chapter" data-level="" data-path="unit-tests.html"><a href="unit-tests.html#lintr"><i class="fa fa-check"></i>lintr</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="error-messages.html"><a href="error-messages.html"><i class="fa fa-check"></i><b>7</b> Error messages</a><ul>
+<li class="chapter" data-level="7.1" data-path="error-messages.html"><a href="error-messages.html#problem-statement"><i class="fa fa-check"></i><b>7.1</b> Problem statement</a></li>
+<li class="chapter" data-level="7.2" data-path="error-messages.html"><a href="error-messages.html#error-location"><i class="fa fa-check"></i><b>7.2</b> Error location</a></li>
+<li class="chapter" data-level="7.3" data-path="error-messages.html"><a href="error-messages.html#hints"><i class="fa fa-check"></i><b>7.3</b> Hints</a></li>
+<li class="chapter" data-level="7.4" data-path="error-messages.html"><a href="error-messages.html#grammar"><i class="fa fa-check"></i><b>7.4</b> Grammar</a></li>
+<li class="chapter" data-level="7.5" data-path="error-messages.html"><a href="error-messages.html#examples"><i class="fa fa-check"></i><b>7.5</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="news.html"><a href="news.html"><i class="fa fa-check"></i><b>8</b> News</a><ul>
+<li class="chapter" data-level="8.1" data-path="news.html"><a href="news.html#news-bullets"><i class="fa fa-check"></i><b>8.1</b> News bullets</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="news.html"><a href="news.html#general-style"><i class="fa fa-check"></i><b>8.1.1</b> General style</a></li>
+<li class="chapter" data-level="8.1.2" data-path="news.html"><a href="news.html#common-patterns"><i class="fa fa-check"></i><b>8.1.2</b> Common patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="news.html"><a href="news.html#organisation"><i class="fa fa-check"></i><b>8.2</b> Organisation</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="news.html"><a href="news.html#breaking-changes"><i class="fa fa-check"></i><b>8.2.1</b> Breaking changes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="news.html"><a href="news.html#blog-post"><i class="fa fa-check"></i><b>8.3</b> Blog post</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Built with bookdown</a></li>
+<li><a href="https://github.com/tidyverse/style" target="blank">Based on the tidyverse R Style Guide</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R style guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pipes" class="section level1">
+<h1><span class="header-section-number">4</span> Pipes</h1>
+<hr />
+<!--```{block, type = "dqbox"}-->
+<div id="please-note" class="section level3 unnumbered">
+<h3>Please note</h3>
+<p>The <a href="http://magrittr.tidyverse.org/"><code>magrittr</code></a> package offers the use of the pipe (<code>%&gt;%</code>) in R. The introduction below describes situations when you might want to use the pipe.</p>
+<p>To begin with, here are some notes on its downsides which should be kept in
+mind.</p>
+<p>The <code>magrittr</code> package must be loaded and attached to the search path via a call to <code>library()</code>. The pipe, thus, must not be used in package code. I also recommend not to use it when you write functions in general as you might decide later to include them into a package.
+In my opinion, the pipe should only be used in exploratory use of R, not in scripting. Here is why:</p>
+<p>Intermediate objects matter. You might not need them further in your analysis (that’s what intermediate means), but they are crucial for spotting mistakes and for error diagnostics.
+Always inspect your intermediate objects, to see if they actually look like what you expect and want them to. This is easy with named intermediate objects, but less feasible with nested function calls or pipes.</p>
+<p>The syntax of the pipe (nice when reading out loud) conflicts with usual R syntax and requires constantly switching the mindset when used together with regular functional R syntax. Although this might just be a matter of habit, it introduces some inconsistency and thus makes your code harder to read and more error-prone.</p>
+<p>The pipe is slightly slower than using regular function calls – see benchmarks in our internal dqutils package.</p>
+<p>If you decide to use the pipe anyway, follow the recommendations below.</p>
+<hr />
+</div>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>Use <code>%&gt;%</code> when you find yourself composing three or more functions together
+into a nested call, or creating intermediate objects that you don’t care about.
+Put each verb on its own line. This makes it simpler to rearrange
+them later, and makes it harder to overlook a step. It is ok to keep a one-step
+pipe in one line. (But then, why use the pipe?)</p>
+<ul>
+<li>Check that each step in a pipeline is on a new line, or the entire pipe fits on one line, with <code>pipe_continuation_linter</code>.</li>
+</ul>
+<div style="text-align:right">
+For the example cf. <a href="https://en.wikipedia.org/wiki/Little_Bunny_Foo_Foo">Little Bunny Foo Foo</a>
+</div>
+<div class="good">
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">bopped &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span>foo_foo <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">  </span><span class="kw">hop</span>(<span class="dt">through =</span> forest) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="st">  </span><span class="kw">scoop</span>(<span class="dt">up =</span> field_mouse) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="st">  </span><span class="kw">bop</span>(<span class="dt">on =</span> head)</a>
+<a class="sourceLine" id="cb58-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb58-8" data-line-number="8">foo_foo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fall</span>(<span class="st">&quot;asleep&quot;</span>)     <span class="co"># ok</span></a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="kw">fall</span>(foo_foo, <span class="dt">what =</span> <span class="st">&quot;asleep&quot;</span>) <span class="co"># better</span></a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb58-11" data-line-number="11">hopped  &lt;-<span class="st"> </span><span class="kw">hop</span>(foo_foo, <span class="dt">through =</span> forest)</a>
+<a class="sourceLine" id="cb58-12" data-line-number="12">scooped &lt;-<span class="st"> </span><span class="kw">scoop</span>(hopped, <span class="dt">up =</span> field_mice)</a>
+<a class="sourceLine" id="cb58-13" data-line-number="13">bopped  &lt;-<span class="st"> </span><span class="kw">bop</span>(scooped, <span class="dt">on =</span> head)</a>
+<a class="sourceLine" id="cb58-14" data-line-number="14"><span class="co"># intermediate objects which are no longer needed can be cleaned up</span></a>
+<a class="sourceLine" id="cb58-15" data-line-number="15"><span class="kw">rm</span>(hopped, scooped)</a></code></pre></div>
+</div>
+<div class="bad">
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">foo_foo &lt;-<span class="st"> </span><span class="kw">hop</span>(foo_foo, <span class="dt">through =</span> forest)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3">foo_foo &lt;-<span class="st"> </span><span class="kw">scoop</span>(foo_foo, <span class="dt">up =</span> field_mice)</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">foo_foo &lt;-<span class="st"> </span><span class="kw">bop</span>(foo_foo, <span class="dt">on =</span> head)</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(up) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(field_mice, foo_foo, <span class="op">-</span>on) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb59-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(head)</a>
+<a class="sourceLine" id="cb59-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb59-10" data-line-number="10"><span class="kw">bop</span>( <span class="co"># nesting 3 or more functions gets confusing</span></a>
+<a class="sourceLine" id="cb59-11" data-line-number="11">  <span class="kw">scoop</span>( <span class="co"># nesting 2 functions is ok</span></a>
+<a class="sourceLine" id="cb59-12" data-line-number="12">    <span class="kw">hop</span>(foo_foo, <span class="dt">through =</span> forest),</a>
+<a class="sourceLine" id="cb59-13" data-line-number="13">    <span class="dt">up =</span> field_mice</a>
+<a class="sourceLine" id="cb59-14" data-line-number="14">  ),</a>
+<a class="sourceLine" id="cb59-15" data-line-number="15">  <span class="dt">on =</span> head</a>
+<a class="sourceLine" id="cb59-16" data-line-number="16">)</a></code></pre></div>
+</div>
+<p>Avoid using the pipe when:</p>
+<ul>
+<li><p>You need to manipulate more than one object at a time. Reserve pipes for a
+sequence of steps applied to one primary object.</p></li>
+<li><p>There are meaningful intermediate objects that could be given
+informative names.</p></li>
+</ul>
+<p>Sometimes it seems useful to include a short pipe as an argument to a function
+in a longer pipe (which doesn’t require a lookup elsewhere). Avoid this, it decreases the readability of your code. It’s better to move the code outside the pipe and give it an evocative name.</p>
+<div class="bad">
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(a, b, w) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="st">  </span><span class="kw">left_join</span>(y <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(a, b, v), <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))</a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">x <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(a, b, w) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8"><span class="st">  </span><span class="kw">left_join</span>(</a>
+<a class="sourceLine" id="cb60-9" data-line-number="9">    y <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10"><span class="st">      </span><span class="kw">filter</span>(<span class="op">!</span>u) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-11" data-line-number="11"><span class="st">      </span><span class="kw">gather</span>(a, v, <span class="op">-</span>b) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-12" data-line-number="12"><span class="st">      </span><span class="kw">select</span>(a, b, v), </a>
+<a class="sourceLine" id="cb60-13" data-line-number="13">    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)</a>
+<a class="sourceLine" id="cb60-14" data-line-number="14">    )</a></code></pre></div>
+</div>
+<div class="good">
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">x_join &lt;-<span class="st"> </span><span class="kw">select</span>(x, a, b, w)</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">y_join &lt;-</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="st">  </span>y <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-5" data-line-number="5"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span>u) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="st">    </span><span class="kw">gather</span>(a, v, <span class="op">-</span>b) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="st">    </span><span class="kw">select</span>(a, b, v)</a>
+<a class="sourceLine" id="cb61-8" data-line-number="8"><span class="kw">left_join</span>(x_join, y_join, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))</a></code></pre></div>
+</div>
+<hr />
+</div>
+<div id="spacing-and-indenting" class="section level2">
+<h2><span class="header-section-number">4.2</span> Spacing and indenting</h2>
+<p><code>%&gt;%</code> should always have a space before it and a new line after it. After the
+first step, each line should be indented by two spaces.</p>
+<div class="good">
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="st">  </span><span class="kw">arrange</span>(value)</a></code></pre></div>
+</div>
+<div class="bad">
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="kw">arrange</span>(value)</a></code></pre></div>
+</div>
+<hr />
+</div>
+<div id="no-arguments" class="section level2">
+<h2><span class="header-section-number">4.3</span> No arguments</h2>
+<p>magrittr allows you to omit <code>()</code> on functions that don’t have arguments. Avoid
+this.</p>
+<div class="good">
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">  </span><span class="kw">sort</span>()</a></code></pre></div>
+</div>
+<div class="bad">
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">x <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span>unique <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="st">  </span>sort</a></code></pre></div>
+</div>
+<hr />
+</div>
+<div id="long-lines-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Long lines</h2>
+<p>If the arguments to a function don’t all fit on one line, put each argument on
+its own line and indent:</p>
+<div class="good">
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">    <span class="dt">Sepal.Length =</span> <span class="kw">mean</span>(Sepal.Length),</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6">    <span class="dt">Sepal.Width =</span> <span class="kw">mean</span>(Sepal.Width),</a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">    <span class="dt">Species =</span> <span class="kw">n_distinct</span>(Species)</a>
+<a class="sourceLine" id="cb66-8" data-line-number="8">  )</a></code></pre></div>
+</div>
+<hr />
+</div>
+<div id="assignment-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Assignment</h2>
+<p>Do not use <code>-&gt;</code> to create an object at the end of the pipe. Although it
+perfectly makes sense when using the pipe (reading out loud), it conflicts with usual R syntax.</p>
+<p>Use a separate line for the target of the assignment followed by <code>&lt;-</code>, it makes reading the code easier. Not only is this consistent with common R syntax, also the name acts as a heading, which reminds you of the purpose of the pipe.</p>
+<div class="good">
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">iris_long &lt;-</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span>iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>value)</a></code></pre></div>
+</div>
+<div class="bad">
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">iris_long &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>value)</a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6">iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>value) -&gt;</a>
+<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="st">  </span>iris_long</a></code></pre></div>
+</div>
+<hr />
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="help-pages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

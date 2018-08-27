@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R style guide</title>
+  <meta name="description" content="R style guide">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R style guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R style guide" />
+  
+  
+  
+
+<meta name="author" content="">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="settings/dq-icon-or-rgb.svg" type="image/x-icon">
+<link rel="prev" href="error-messages.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="settings/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="margin-top: 0.2cm; margin-bottom: 0.1cm;">&nbsp; &nbsp; <img src="daqana-or-rgb.svg" width="180"> R style guide</p>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#lintr-and-styler"><i class="fa fa-check"></i>lintr and styler</a></li>
+</ul></li>
+<li class="part"><span><b>I Analyses</b></span></li>
+<li class="chapter" data-level="1" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>1</b> Files</a><ul>
+<li class="chapter" data-level="1.1" data-path="files.html"><a href="files.html#names"><i class="fa fa-check"></i><b>1.1</b> Names</a></li>
+<li class="chapter" data-level="1.2" data-path="files.html"><a href="files.html#paths"><i class="fa fa-check"></i><b>1.2</b> Paths</a></li>
+<li class="chapter" data-level="1.3" data-path="files.html"><a href="files.html#structure"><i class="fa fa-check"></i><b>1.3</b> Structure</a></li>
+<li class="chapter" data-level="1.4" data-path="files.html"><a href="files.html#cleaning-up"><i class="fa fa-check"></i><b>1.4</b> Cleaning up</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Syntax.html"><a href="Syntax.html"><i class="fa fa-check"></i><b>2</b> Syntax</a><ul>
+<li class="chapter" data-level="2.1" data-path="Syntax.html"><a href="Syntax.html#object-names"><i class="fa fa-check"></i><b>2.1</b> Object names</a></li>
+<li class="chapter" data-level="2.2" data-path="Syntax.html"><a href="Syntax.html#spacing"><i class="fa fa-check"></i><b>2.2</b> Spacing</a></li>
+<li class="chapter" data-level="2.3" data-path="Syntax.html"><a href="Syntax.html#Indenting"><i class="fa fa-check"></i><b>2.3</b> Indenting</a></li>
+<li class="chapter" data-level="2.4" data-path="Syntax.html"><a href="Syntax.html#long-lines"><i class="fa fa-check"></i><b>2.4</b> Long lines</a></li>
+<li class="chapter" data-level="2.5" data-path="Syntax.html"><a href="Syntax.html#assignment"><i class="fa fa-check"></i><b>2.5</b> Assignment</a></li>
+<li class="chapter" data-level="2.6" data-path="Syntax.html"><a href="Syntax.html#semicolons"><i class="fa fa-check"></i><b>2.6</b> Semicolons</a></li>
+<li class="chapter" data-level="2.7" data-path="Syntax.html"><a href="Syntax.html#quotes"><i class="fa fa-check"></i><b>2.7</b> Quotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> Functions</a><ul>
+<li class="chapter" data-level="3.1" data-path="functions.html"><a href="functions.html#naming"><i class="fa fa-check"></i><b>3.1</b> Naming</a></li>
+<li class="chapter" data-level="3.2" data-path="functions.html"><a href="functions.html#function-head-body"><i class="fa fa-check"></i><b>3.2</b> Head and body</a></li>
+<li class="chapter" data-level="3.3" data-path="functions.html"><a href="functions.html#argument-names"><i class="fa fa-check"></i><b>3.3</b> Argument names</a></li>
+<li class="chapter" data-level="3.4" data-path="functions.html"><a href="functions.html#return"><i class="fa fa-check"></i><b>3.4</b> <code>return()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="functions.html"><a href="functions.html#comments"><i class="fa fa-check"></i><b>3.5</b> Comments</a></li>
+<li class="chapter" data-level="3.6" data-path="functions.html"><a href="functions.html#design"><i class="fa fa-check"></i><b>3.6</b> Design</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>4</b> Pipes</a><ul>
+<li class="chapter" data-level="" data-path="pipes.html"><a href="pipes.html#please-note"><i class="fa fa-check"></i>Please note</a></li>
+<li class="chapter" data-level="4.1" data-path="pipes.html"><a href="pipes.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="pipes.html"><a href="pipes.html#spacing-and-indenting"><i class="fa fa-check"></i><b>4.2</b> Spacing and indenting</a></li>
+<li class="chapter" data-level="4.3" data-path="pipes.html"><a href="pipes.html#no-arguments"><i class="fa fa-check"></i><b>4.3</b> No arguments</a></li>
+<li class="chapter" data-level="4.4" data-path="pipes.html"><a href="pipes.html#long-lines-1"><i class="fa fa-check"></i><b>4.4</b> Long lines</a></li>
+<li class="chapter" data-level="4.5" data-path="pipes.html"><a href="pipes.html#assignment-1"><i class="fa fa-check"></i><b>4.5</b> Assignment</a></li>
+</ul></li>
+<li class="part"><span><b>II Packages</b></span></li>
+<li class="chapter" data-level="5" data-path="help-pages.html"><a href="help-pages.html"><i class="fa fa-check"></i><b>5</b> Help Pages</a><ul>
+<li class="chapter" data-level="5.1" data-path="help-pages.html"><a href="help-pages.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="help-pages.html"><a href="help-pages.html#title-and-description"><i class="fa fa-check"></i><b>5.2</b> Title and Description</a></li>
+<li class="chapter" data-level="5.3" data-path="help-pages.html"><a href="help-pages.html#indention"><i class="fa fa-check"></i><b>5.3</b> Indention</a></li>
+<li class="chapter" data-level="5.4" data-path="help-pages.html"><a href="help-pages.html#documenting-parameters"><i class="fa fa-check"></i><b>5.4</b> Documenting Parameters</a></li>
+<li class="chapter" data-level="5.5" data-path="help-pages.html"><a href="help-pages.html#capitalization-and-full-stops"><i class="fa fa-check"></i><b>5.5</b> Capitalization and Full Stops</a></li>
+<li class="chapter" data-level="5.6" data-path="help-pages.html"><a href="help-pages.html#reference"><i class="fa fa-check"></i><b>5.6</b> Reference</a></li>
+<li class="chapter" data-level="5.7" data-path="help-pages.html"><a href="help-pages.html#line-break"><i class="fa fa-check"></i><b>5.7</b> Line Break</a></li>
+<li class="chapter" data-level="5.8" data-path="help-pages.html"><a href="help-pages.html#code-font"><i class="fa fa-check"></i><b>5.8</b> Code Font</a></li>
+<li class="chapter" data-level="5.9" data-path="help-pages.html"><a href="help-pages.html#internal-functions"><i class="fa fa-check"></i><b>5.9</b> Internal Functions</a></li>
+<li class="chapter" data-level="5.10" data-path="help-pages.html"><a href="help-pages.html#deprecating-functions"><i class="fa fa-check"></i><b>5.10</b> Deprecating Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="unit-tests.html"><a href="unit-tests.html"><i class="fa fa-check"></i><b>6</b> Unit Tests</a><ul>
+<li class="chapter" data-level="6.1" data-path="unit-tests.html"><a href="unit-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="unit-tests.html"><a href="unit-tests.html#file-names"><i class="fa fa-check"></i><b>6.2</b> File names</a></li>
+<li class="chapter" data-level="6.3" data-path="unit-tests.html"><a href="unit-tests.html#structure-1"><i class="fa fa-check"></i><b>6.3</b> Structure</a></li>
+<li class="chapter" data-level="6.4" data-path="unit-tests.html"><a href="unit-tests.html#context"><i class="fa fa-check"></i><b>6.4</b> Context</a></li>
+<li class="chapter" data-level="6.5" data-path="unit-tests.html"><a href="unit-tests.html#property-test"><i class="fa fa-check"></i><b>6.5</b> Property test</a></li>
+<li class="chapter" data-level="" data-path="unit-tests.html"><a href="unit-tests.html#lintr"><i class="fa fa-check"></i>lintr</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="error-messages.html"><a href="error-messages.html"><i class="fa fa-check"></i><b>7</b> Error messages</a><ul>
+<li class="chapter" data-level="7.1" data-path="error-messages.html"><a href="error-messages.html#problem-statement"><i class="fa fa-check"></i><b>7.1</b> Problem statement</a></li>
+<li class="chapter" data-level="7.2" data-path="error-messages.html"><a href="error-messages.html#error-location"><i class="fa fa-check"></i><b>7.2</b> Error location</a></li>
+<li class="chapter" data-level="7.3" data-path="error-messages.html"><a href="error-messages.html#hints"><i class="fa fa-check"></i><b>7.3</b> Hints</a></li>
+<li class="chapter" data-level="7.4" data-path="error-messages.html"><a href="error-messages.html#grammar"><i class="fa fa-check"></i><b>7.4</b> Grammar</a></li>
+<li class="chapter" data-level="7.5" data-path="error-messages.html"><a href="error-messages.html#examples"><i class="fa fa-check"></i><b>7.5</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="news.html"><a href="news.html"><i class="fa fa-check"></i><b>8</b> News</a><ul>
+<li class="chapter" data-level="8.1" data-path="news.html"><a href="news.html#news-bullets"><i class="fa fa-check"></i><b>8.1</b> News bullets</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="news.html"><a href="news.html#general-style"><i class="fa fa-check"></i><b>8.1.1</b> General style</a></li>
+<li class="chapter" data-level="8.1.2" data-path="news.html"><a href="news.html#common-patterns"><i class="fa fa-check"></i><b>8.1.2</b> Common patterns</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="news.html"><a href="news.html#organisation"><i class="fa fa-check"></i><b>8.2</b> Organisation</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="news.html"><a href="news.html#breaking-changes"><i class="fa fa-check"></i><b>8.2.1</b> Breaking changes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="news.html"><a href="news.html#blog-post"><i class="fa fa-check"></i><b>8.3</b> Blog post</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Built with bookdown</a></li>
+<li><a href="https://github.com/tidyverse/style" target="blank">Based on the tidyverse R Style Guide</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R style guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="news" class="section level1">
+<h1><span class="header-section-number">8</span> News</h1>
+<hr />
+<div id="news-bullets" class="section level2">
+<h2><span class="header-section-number">8.1</span> News bullets</h2>
+<p>Each user-facing change should be accompanied by a bullet in <code>NEWS.md</code>. The goal
+of the bullet is to briefly describe the change so users of the packages can
+understand what’s changed. This can be similar to the commit message, but often
+the commit message will be developer facing, and the bullet will be user facing.</p>
+<p>It is not necessary to describe minor documentation changes. But it’s worthwhile
+to draw attention to sweeping changes, and to new vignettes.</p>
+<p>New bullets should be added to the top of the file (under the version heading).
+Organisation of bullets will happen later, during the release process (as
+described below).</p>
+<hr />
+<div id="general-style" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> General style</h3>
+<p>Strive to place the name of the function as close to the beginning of the bullet
+as possible. A consistent location makes the bullets easier to scan, and easier
+to organise prior to release.</p>
+<div class="good">
+<pre><code># Good
+* `ggsave()` now uses full argument names to avoid partial match warning (#2355).</code></pre>
+</div>
+<div class="bad">
+<pre><code># Bad
+* Fixed partial argument matches in `ggsave()` (#2355).</code></pre>
+</div>
+<p>Lines should be wrapped to 80 characters, and each bullet should end in a full
+stop.</p>
+<p>Frame bullets positively (i.e. what now happens, not what used to happen), and
+use the present tense.</p>
+<div class="good">
+<pre><code># Good
+* `ggsave()` now uses full argument names to avoid partial match warnings (#2355).</code></pre>
+</div>
+<div class="bad">
+<pre><code># Bad
+* `ggsave()` no longer partially matches argument names (#2355).</code></pre>
+</div>
+<p>If the bullet is related to an issue, include the issue number. If the
+contribution was a PR, and the author is not a package author, include their
+GitHub user name. Both items should be wrapped in parentheses and will generally
+come before the final period.</p>
+<div class="good">
+<pre><code># Good
+* `ggsave()` now uses full argument names to avoid partial match warnings 
+  (@wch, #2355).</code></pre>
+</div>
+<div class="bad">
+<pre><code># Bad
+* `ggsave()` now uses full argument names to avoid partial match warnings.
+
+* `ggsave()` now uses full argument names to avoid partial match warnings.
+  (@wch, #2355)</code></pre>
+</div>
+<p>Functions and arguments should be wrapped in back ticks, and function names
+should include parentheses.</p>
+<div class="good">
+<pre><code># Good
+* In `stat_bin()`, `binwidth` now also takes functions.</code></pre>
+</div>
+<div class="bad">
+<pre><code># Bad
+* In the `stat_bin` function, the `binwidth` argument now also takes functions.</code></pre>
+</div>
+<p>Many news bullets will be a single sentence. This is typically adequate when describing a bug fix or minor improvement, but you may need more detail when describing a new feature. For more complex features, include longer examples in fenced code blocks (<code>```</code>). These will be useful inspiration when you later write the blog post.</p>
+<div class="good">
+<pre><code># Good
+* In `stat_bin()`, `binwidth` now also takes functions.
+
+# Better
+* In `stat_bin()`, `binwidth` now also takes functions. The function is 
+  called with the scaled `x` values, and should return a single number.
+  This makes it possible to use classical binwidth computatons with ggplot2.
+
+# Best
+* In `stat_bin()`, `binwidth` now also takes functions. The function is 
+  called with the scaled `x` values, and should return a single number.
+  With a little work, this makes it possible to use classical bin size 
+  computatons with ggplot2.
+  
+  ```R
+  sturges &lt;- function(x) {
+    rng &lt;- range(x)
+    bins &lt;- nclass.Sturges(x)
+    (rng[2] - rng[1]) / bins
+  }
+  
+  ggplot(diamonds, aes(price)) +
+    geom_histogram(binwidth = sturges) + 
+    facet_wrap(~ cut)
+  ```</code></pre>
+</div>
+<hr />
+</div>
+<div id="common-patterns" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Common patterns</h3>
+<p>The following excerpts from tidyverse news entries provide helpful templates to
+follow.</p>
+<ul>
+<li>New family of functions</li>
+</ul>
+<div class="tip">
+<pre><code>* Support for ordered factors is improved. Ordered factors throw a warning 
+  when mapped to shape (unordered factors do not), and do not throw warnings 
+  when mapped to size or alpha (unordered factors do). Viridis is used as 
+  default colour and fill scale for ordered factors (@karawoo, #1526).
+
+* `possibly()`, `safely()` and friends no longer capture interrupts: this
+  means that you can now terminate a mapper using one of these with
+  Escape or Ctrl + C (#314).</code></pre>
+</div>
+<ul>
+<li>New function</li>
+</ul>
+<div class="tip">
+<pre><code>* New `position_dodge2()` provides enhanced dogding for boxplots...
+
+* New `stat_qq_line()` makes it easy to add a simple line to a Q-Q plot. 
+  This line makes it easier to judge the fit of the theoretical distribution 
+  (@nicksolomon).</code></pre>
+</div>
+<ul>
+<li>New argument to existing function:</li>
+</ul>
+<div class="tip">
+<pre><code>* `geom_segment()` gains a `linejoin` parameter.</code></pre>
+</div>
+<ul>
+<li>Function argument changes behaviour:</li>
+</ul>
+<div class="tip">
+<pre><code>* In `separate()`, `col = -1` now refers to the far right position. 
+  Previously, and incorrectly, `col = -2` referred to the far-right 
+  position.</code></pre>
+</div>
+<ul>
+<li>Function changes behaviour.</li>
+</ul>
+<div class="tip">
+<pre><code>* `map()` and `modify()` now work with calls and pairlists (#412).
+
+* `flatten_dfr()` and `flatten_dfc()` now aborts with informative 
+  message if dplyr is not installed (#454).
+
+* `reduce()` now throws an error if `.x` is empty and `.init` is not
+  supplied.</code></pre>
+</div>
+<hr />
+</div>
+</div>
+<div id="organisation" class="section level2">
+<h2><span class="header-section-number">8.2</span> Organisation</h2>
+<p>Prior to release, the NEWS file needs to be thoroughly proof read and groomed.</p>
+<p>Each release should have a level 1 heading (<code>#</code>) containing the package name
+and version number. For smaller packages or patch releases this amount of
+organisation may be sufficient. For example, here is the NEWS for model 0.1.2:</p>
+<div class="tip">
+<pre><code># modelr 0.1.2
+
+* `data_grid()` no longer fails with modern tidyr (#58).
+
+* New `mape()` and `rsae()` model quality statistics (@paulponcet, #33).
+
+* `rsquare()` use more robust calculation 1 - SS_res / SS_tot rather 
+  than SS_reg / SS_tot (#37).
+
+* `typical()` gains `ordered` and `integer` methods (@jrnold, #44), 
+  and `...` argument (@jrnold, #42).</code></pre>
+</div>
+<p>If there are manymany bullets, the version heading should be following issues
+grouped into related areas with level 2 headings (<code>##</code>). Three commonly
+used sections are shown below:</p>
+<div class="tip">
+<pre><code># package 1.1.0
+
+## Breaking changes
+
+## New features
+
+## Minor improvements and fixes</code></pre>
+</div>
+<p>It is fine to deviate from these headings if another organisation makes sense.
+Indeed, larger packages will often require a finer break down. For example,
+ggplot2 2.3.0
+included these headings:</p>
+<pre><code># ggplot 2.3.0
+## Breaking changes
+## New features
+### Tidy evaluation
+### sf
+### Layers: geoms, stats, and position adjustments
+### Scales and guides
+### Margins
+## Extension points
+## Minor bug fixes and improvements
+### Facetting
+### Scales
+### Layers
+### Coords
+### Themes
+### Guides
+### Other</code></pre>
+<p>It is not worthwhile to organise bullets into headings during development, as
+it’s not typically obvious what the groups will be in advance.</p>
+<p>Within a section, bullets should be ordered alphabetically by the first function
+mentioned. If no function is mentioned, place at the top of the section.</p>
+<hr />
+<div id="breaking-changes" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Breaking changes</h3>
+<p>If there are API breaking changes (as discovered during revdepchecks) these
+should also appear in their <strong>own section at the top</strong>. Each bullet should include
+a description of the symptoms of the change, and what is needed to fix it. The
+bullet should also be repeated in the appropriate section.</p>
+<div class="tip">
+<pre><code>## Breaking changes
+
+* `separate()` now correctly uses -1 to refer to the far right position, 
+  instead of -2. If you depended on this behaviour, you&#39;ll need to condition
+  on `packageVersion(&quot;tidyr&quot;) &gt; &quot;0.7.2&quot;`.</code></pre>
+</div>
+<hr />
+</div>
+</div>
+<div id="blog-post" class="section level2">
+<h2><span class="header-section-number">8.3</span> Blog post</h2>
+<p>For all major and minor releases, the latest news should be turned into a blog
+post. The blog post should hightlight major user-facing changes, and point to
+the release notes for more details. Generally, you should focus on new features
+and major improvements, including examples showing the new features in action.
+You don’t need to describe minor improvements and bug fixes, as the motivated
+reader can find these in the release notes.</p>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="error-messages.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
