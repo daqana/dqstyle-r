@@ -49,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="settings/style.css" type="text/css" />
@@ -159,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="functions.html"><a href="functions.html#design"><i class="fa fa-check"></i><b>3.6</b> Design</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>4</b> Pipes</a><ul>
-<li class="chapter" data-level="" data-path="pipes.html"><a href="pipes.html#please-note"><i class="fa fa-check"></i>Please note</a></li>
+<li><a href="pipes.html#please-note"><font color='#8a9fa6'>Please note</font></a></li>
 <li class="chapter" data-level="4.1" data-path="pipes.html"><a href="pipes.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="pipes.html"><a href="pipes.html#spacing-and-indenting"><i class="fa fa-check"></i><b>4.2</b> Spacing and indenting</a></li>
 <li class="chapter" data-level="4.3" data-path="pipes.html"><a href="pipes.html#no-arguments"><i class="fa fa-check"></i><b>4.3</b> No arguments</a></li>
@@ -231,43 +203,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="section" class="section level1 unnumbered">
 <h1></h1>
-<p>This work is an adaptation of the <a href="http://style.tidyverse.org/">tidyverse style guide</a> by Hadley Wickham, based on 2017-11-17 and 2018-05-15 snapshots taken from <a href="https://github.com/tidyverse/style">GitHub</a> [<a href="https://creativecommons.org/licenses/by/3.0/legalcode?">license</a>].</p>
+<p>This work is an adaptation of the <a href="http://style.tidyverse.org/">tidyverse style guide</a> by Hadley Wickham, based on 2017-11-17 and 2018-05-15 snapshots taken from <a href="https://github.com/tidyverse/style">GitHub</a> <font color='#8a9fa6'>[</font><a href="https://creativecommons.org/licenses/by/3.0/legalcode?">license</a><font color='#8a9fa6'>]</font>.</p>
 <div id="welcome" class="section level2 unnumbered">
 <h2>Welcome</h2>
 <hr />
 <p>This is the R style guide applied at <a href="https://www.daqana.com">daqana</a>.</p>
-<p>Most of what is typically regarded as a style guide can be found in section <a href="Syntax.html#Syntax">2</a> <a href="Syntax.html#Syntax">Syntax</a>.
-The first four sections of this guide deal with styling recommendations for scripting in R. The second part deals with R package development. The guide should not be seen as complete and will certainly see further enhancement. A best practices section for coding in R (do avoid these <code>for</code> loops 🙂) or our preferred settings when using RStudio might be added in the future.</p>
+<p>Most of what is typically regarded as a style guide can be found in section <a href="Syntax.html#Syntax">2</a> <a href="Syntax.html#Syntax">Syntax</a>. The first four sections of this guide deal with styling recommendations for scripting in R. The second part deals with R package development. The guide should not be seen as complete and will certainly see further enhancement. A best practices section for coding in R (do avoid these <code>for</code> loops 🙂) or our preferred settings when using RStudio might be added in the future.</p>
 <p>Let’s start.</p>
 <hr />
-<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Just as with punctuation, while there are many code styles to choose from, some are more reader-friendly than others.
-The style presented here is based on the style guide, which is used
-throughout the <a href="http://tidyverse.org">tidyverse</a>, and which in turn is derived
-from <a href="https://google.github.io/styleguide/Rguide.xml">Google’s R style guide</a>
-and has evolved considerably over the years.</p>
+<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Just as with punctuation, while there are many code styles to choose from, some are more reader-friendly than others. The style presented here is based on the style guide, which is used throughout the <a href="http://tidyverse.org">tidyverse</a>, and which in turn is derived from <a href="https://google.github.io/styleguide/Rguide.xml">Google’s R style guide</a> and has evolved considerably over the years.</p>
 <p>Some decisions genuinely do make code easier to use (especially matching indentation to programming structure) and we try to explain these choices, but many decisions are arbitrary or a matter of taste. The more important thing about a style guide is that it provides consistency if applied consistently.</p>
 <hr />
 <div style="height:20px;">
 
 </div>
 <div class="good">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Good</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">Throughout this guide positive examples are shown on a green background.</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
+Throughout this guide positive examples are shown on a green background.</code></pre></div>
 </div>
 <div class="bad">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Bad</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">Negative examples are shown on a pink background. </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Bad</span>
+Negative examples are shown on a pink background. </code></pre></div>
 </div>
 <p>The colors were chosen from a <a href="http://colorbrewer2.org/#type=diverging&amp;scheme=PiYG&amp;n=3">diverging colorblind friendly scheme</a> (and some transparency has been added).</p>
 <div class="tip">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">Tips got a lightgrey background like any inline code. </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tips got a lightgrey background like any inline code. </code></pre></div>
 </div>
 <hr />
 </div>
 <div id="lintr-and-styler" class="section level2 unnumbered">
 <h2>lintr and styler</h2>
 <p>Conformance with a good portion of this style guide can be checked in an automated manner thanks to the <a href="https://github.com/jimhester/lintr"><code>lintr</code></a> package (development version 1.0.2.9000 at the time of writing). The availability of specific linters is mentioned in the corresponding sections. A unit test bundling the customized linters is given in the Unit Tests <a href="unit-tests.html#lintr">lintr</a> section of this guide.</p>
-<p>The <a href="https://github.com/r-lib/styler"><code>styler</code></a> package not only checks compliance with a specified style guide but also applies its rules to any discrepancies encountered. The package evolved from a Google Summer of Code project in 2017 and is under active development. It is tidyverse-oriented, i.e. its rules so far ensure compliance with aspects of the tidyverse style guide. Minor aspects are directly customizable, others would require their own rules to be written. We are planning to bundle the existing customized rules into a <code>daqana_style()</code> function and might extend it to widly cover this guides recommendations. The rules already covered (spaces, indention, line breaks and tokens) will be mentioned throughout the text.</p>
+<p>The <a href="https://github.com/r-lib/styler"><code>styler</code></a> package not only checks compliance with a specified style guide but also applies its rules to any discrepancies encountered. The package evolved from a Google Summer of Code project in 2017 and is under active development. It is tidyverse-oriented, i.e. its rules so far ensure compliance with aspects of the tidyverse style guide. Minor aspects are directly customizable, others would require their own rules to be written. We <font color='darkred'>are planning to</font> bundle the existing customized rules into a <code>daqana_style()</code> function and might extend it to widly cover this guides recommendations. The rules already covered (spaces, indention, line breaks and tokens) <font color='darkred'>will be</font> mentioned throughout the text.</p>
 <p>RStudio add-ins exist for both packages with default settings. To customize the linter add-in (on a per project basis) add the <a href="../../daqana_linters.R"><code>daqana_linters.R</code></a> file (detailed in section <a href="unit-tests.html#unit-tests">6</a>) and a <code>.lintr</code> config file to your RStudio project directory. The config file should simply look like the following (mind the newline):</p>
 <div class="tip">
 <pre><code>linters: source(&quot;daqana_linters.R&quot;); daqana_linters 
