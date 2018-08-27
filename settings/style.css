@@ -53,6 +53,10 @@ div.dqbox { background-color: #ff8f0055 !important; }
     color: var(--color-secondary);
 }
 
+.book .book-body .page-wrapper .page-inner section.normal .sourceCode .sourceLine {
+    color: inherit;
+}
+
 /* set body fonts and colors */
 body {
   font-family: 'Noto Serif', serif;
