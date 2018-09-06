@@ -1,0 +1,186 @@
+
+# Functions
+
+--------------------------------------------------------------------------------
+
+## Naming
+
+Use verbs for function names, where possible.
+
+<div class = "good">
+```{r eval = FALSE}
+# Good
+add_row()
+permute()
+```
+</div>
+
+<div class = "bad">
+```{r eval = FALSE}
+# Bad
+row_adder()
+permutation()
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Head and body {#function-head-body}
+
+If a function's arguments definition runs over multiple lines, start the definition in a second line indenting by two spaces. Every argument should go to its own line as well as the closing bracket followed by the opening curly brace `) {` and a new line for the function body.
+An empty line after the opening and before the closing bracket of the body 
+further increase readability.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+long_function_name <- function(
+  a = "a long argument",
+  b = "another argument",
+  c = "another long argument"
+) {
+  
+  # As usual code is indented by two spaces.
+  
+}
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+long_function_name <- function(a = "a long argument",
+  b = "another argument",
+  c = "another long argument") {
+  # Here the first argument might be overlooked 
+  # and it is a bit harder to spot where the head of the function ends 
+  # and the body of the function begins
+}
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Argument names
+
+A function's arguments typically fall into two broad categories: one supplies 
+the __data__ to compute on; the other controls the __details__ of computation. When 
+you call a function, you typically omit the names of data arguments, because 
+they are used so commonly. Specify the non-data arguments explicitly and with 
+the full name, avoid partial matching.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+mean(1:10, na.rm = TRUE)
+mean(1:10, trim = 0.1)
+```
+</div>
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+mean(x = 1:10, , FALSE)
+mean(, TRUE, x = c(1:10, NA))
+mean(1:10, tr = 0.1)
+```
+</div>
+
+Aside:    
+Avoid abbreviations of logicals, alway use `TRUE` and `FALSE`, never use `T` 
+and `F`.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+mean(1:10, na.rm = TRUE)
+my_vector[my_index] <- FALSE
+```
+</div>
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+mean(x = 1:10, na.rm = T)
+my_vector[my_index] <- F
+```
+</div>
+
+* There is a linter for spotting `T` and `F` symbols: `T_and_F_symbol_linter`. 
+
+--------------------------------------------------------------------------------
+
+## `return()`
+
+Only use `return()` for early returns. Otherwise rely on R to return the result 
+of the last evaluated expression.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+find_abs <- function(x, y){
+  if (x > 0) { return(x) }
+  -1 * x
+}
+
+add_two <- function(x, y) {
+  x + y
+}
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+add_two <- function(x, y) {
+  return(x + y)
+}
+```
+</div>
+
+If your function is called primarily for its side-effects (like printing, 
+plotting, or saving to disk), it should return the first argument invisibly. 
+(This makes it possible to use the function as part of a pipe.)     
+`print` methods should usually do this, like this example from `httr`:
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+print.url <- function(x, ...) {
+  cat("Url: ", build_url(x), "\n", sep = "")
+  invisible(x)
+}
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Comments
+
+In code, use comments to explain the *Why* rather than the *What* or *How*. 
+Each line of a comment should begin with the comment symbol and a single space: `# comment`. Your function code (the *What* and *How*) should be self-explanatory.
+
+Comment the *What* as a headline of a codeblock optionally surrounded by lines 
+of `-` or `=` to structure your script. Within functions this should rarely be necessary, as functions should not become too long. 
+
+At [daqana](https://www.daqana.com) we agreed upon writing comments in English, and more specifically to use American English (AE), i.e. write _color_ not _colour_, use _optimize_ not _optimise_ etc. 
+
+--------------------------------------------------------------------------------
+
+## Design
+
+There are two main design principles to bear in mind:
+
+*   A function should do one thing well. 
+ 
+    A function should be called either because it has side-effects or 
+    because it returns a value; not both. Strive to keep blocks within 
+    a function on one screen. 20-30 lines per function are common. For 
+    functions that are significantly longer, consider splitting into smaller 
+    functions.
+
+*   A function should be easily understandable in isolation.
+
+    Avoid global options. If your function has a transient side-effect
+    (i.e. you need to create a temporary file or set an option), clean up
+    after yourself with `on.exit()`.
+
+--------------------------------------------------------------------------------

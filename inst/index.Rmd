@@ -1,0 +1,91 @@
+--- 
+title: "R style guide"
+author: "[<img src='daqana-or-rgb.svg' alt='daqana' width = '12%'>](https://www.daqana.com)"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+favicon: "settings/dq-icon-or-rgb.svg"
+---
+
+# {-}    
+
+This work is an adaptation of the [tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham, based on 2017-11-17 and 2018-05-15 snapshots taken from [GitHub](https://github.com/tidyverse/style) `r color_format("[", color = dq_gray)`[license](https://creativecommons.org/licenses/by/3.0/legalcode?)`r color_format("]", color = dq_gray)`.
+
+## Welcome {-} 
+
+--------------------------------------------------------------------------------
+
+This is the R style guide applied at [daqana](https://www.daqana.com).
+
+Most of what is typically regarded as a style guide can be found in section \@ref(Syntax) [Syntax].
+The first four sections of this guide deal with styling recommendations for scripting in R. The second part deals with R package development. The guide should not be seen as complete and will certainly see further enhancement. A best practices section for coding in R (do avoid these `for` loops `r emo::ji("slightly_smiling_face")`) or our preferred settings when using RStudio might be added in the future.
+
+Let's start.
+
+--------------------------------------------------------------------------------
+
+Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Just as with punctuation, while there are many code styles to choose from, some are more reader-friendly than others. 
+The style presented here is based on the style guide, which is used 
+throughout the [tidyverse](http://tidyverse.org), and which in turn is derived 
+from [Google's R style guide](https://google.github.io/styleguide/Rguide.xml) 
+and has evolved considerably over the years. 
+
+Some decisions genuinely do make code easier to use (especially matching indentation to programming structure) and we try to explain these choices, but many decisions are arbitrary or a matter of taste. The more important thing about a style guide is that it provides consistency if applied consistently.       
+
+--------------------------------------------------------------------------------
+
+<div style = "height:20px;"></div>
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+Throughout this guide positive examples are shown on a green background.
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+Negative examples are shown on a pink background. 
+
+```
+</div>
+
+The colors were chosen from a [diverging colorblind friendly scheme](http://colorbrewer2.org/#type=diverging&scheme=PiYG&n=3) (and some transparency has been added).
+
+<div class = "tip">
+```{r, eval = FALSE}
+Tips got a lightgrey background like any inline code. 
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## lintr and styler {-}
+
+Conformance with a good portion of this style guide can be checked in an automated manner thanks to the [`lintr`](https://github.com/jimhester/lintr) package (development version 1.0.2.9000 at the time of writing). The availability of specific linters is mentioned in the corresponding sections. A unit test bundling the customized linters is given in the Unit Tests [lintr] section of this guide. 
+
+The [`styler`](https://github.com/r-lib/styler) package not only checks compliance with a specified style guide but also applies its rules to any discrepancies encountered. The package evolved from a Google Summer of Code project in 2017 and is under active development. It is tidyverse-oriented, i.e. its rules so far ensure compliance with aspects of the tidyverse style guide. Minor aspects are directly customizable, others would require their own rules to be written. We `r color_format("are planning to")` bundle the existing customized rules into a `daqana_style()` function and might extend it to widly cover this guides recommendations. The rules already covered (spaces, indention, line breaks and tokens) `r color_format("will be")` mentioned throughout the text.
+
+RStudio add-ins exist for both packages with default settings. To customize the linter add-in (on a per project basis) add the [`daqana_linters.R`](../../daqana_linters.R) file (detailed in section \@ref(unit-tests)) and a `.lintr` config file to your RStudio project directory. The config file should simply look like the following (mind the newline): 
+
+<div class = "tip">
+```
+linters: source("daqana_linters.R"); daqana_linters 
+        
+```
+</div>
+
+At [daqana](https://www.daqana.com) with our internal package `dqutils(>=0.0.26)` you can easily edit the `.lintr` config file to look like the following instead and ignore saving `daqana_linters.R ` in your package directory.
+
+<div class = "tip">
+```
+linters: dqutils::daqana_linters
+        
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+last modified: `r Sys.Date()`
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,2 @@
+linters: source("daqana_linters.R"); daqana_linters
+

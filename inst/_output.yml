@@ -1,0 +1,11 @@
+bookdown::gitbook:
+  css: settings/style.css
+  config:
+    toc:
+      before: |
+        <p style="margin-top: 0.2cm; margin-bottom: 0.1cm;">&nbsp; &nbsp; <img src="daqana-or-rgb.svg" width="180"> R style guide</p>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Built with bookdown</a></li>
+        <li><a href="https://github.com/tidyverse/style" target="blank">Based on the tidyverse R Style Guide</a></li>
+      collapse: section
+    sharing: no

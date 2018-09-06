@@ -1,0 +1,3 @@
+before_chapter_script: ["settings/settings.R"]
+output_dir: "docs"
+delete_merged_file: TRUE

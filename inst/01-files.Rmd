@@ -1,0 +1,204 @@
+# (PART) Analyses {-}
+
+# Files
+
+--------------------------------------------------------------------------------
+
+## Names
+
+File names should be meaningful and end in `.R`. Avoid using special characters 
+in file names - stick with numbers, letters, `-`, and `_`.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+fit_models.R
+utility_functions.R
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+fit models.R
+foo.r
+stuff.r
+```
+</div>
+
+If files should be run in a particular order, prefix them with numbers. If it 
+seems likely you'll have more than 10 files, left pad with zero:
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+00_download.R
+01_explore.R
+...
+09_model.R
+10_visualize.R
+```
+</div>
+
+If you later realise that you've missed some steps, it's tempting to use `02a`, 
+`02b`, etc. However, it's generally better to bite the bullet and 
+rename all files.
+
+Pay attention to capitalization, since you, or some of your collaborators, 
+might be using an operating system with a case-insensitive file system (e.g., 
+Microsoft Windows or OS X) which can lead to problems with (case-sensitive) 
+revision control systems. Prefer file names that are all lower case, and never 
+have names that differ only in their capitalization.
+
+--------------------------------------------------------------------------------
+
+## Paths
+
+When referring to files from within your script make sure not to use absolute paths. 
+For portability reasons build paths with the `file.path()` function.
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+"/home/user/my_analysis_dir/data/survey_xy/my_data.csv"
+```
+</div>
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+# you can check the working dir with getwd(), it should be set to your analysis dir
+file.path("data", "survey_xy", "my_data.csv")
+
+survey_xy_dir <- file.path("data", "survey_xy")
+file.path(survey_xy_dir, "my_data.csv")
+file.path(survey_xy_dir, "my_other_data.csv")
+```
+</div>
+
+ * Linters `absolute_path_linter` and `nonportable_path_linter` can check file paths. We currently do not use them as in our experience they fail to detect absolute and nonportable paths. We might write our own linters for that purpose.
+
+--------------------------------------------------------------------------------
+
+## Structure 
+
+Use commented lines of `-` (or `=`) to break up your file into easily readable 
+chunks. Be consistent.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+
+# Load data ===========================
+load("my_data.RData")
+
+# Plot data ===========================
+plot(my_data$height ~ my_data$age)
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+
+# Load data ===========================
+load("my_data.RData")
+
+#Plot data  -------------------------------------------------
+plot(my_data$height ~ my_data$age)
+#--------
+# do some other stuff
+summary(my_data)
+```
+</div>
+
+In data analysis code, use comments to record important findings and analysis 
+decisions. If you need comments to explain what your code is doing, consider 
+rewriting your code to be clearer. If you discover that you have more comments 
+than code, consider switching to RMarkdown.
+
+Start the script with a settings section sourcing and loading external files and packages and setting global variables and options. (With global we mean within your analysis or project, not R's global options.) If you organize your project as a package (recommended) you can and should avoid `load()` and `source()`. 
+`source()` can be very helpful, though, for keeping reports and apps well-arranged when they grow larger.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+
+# -----------------------------------------------------------------------------
+
+# settings
+requireNamespace("package_name", quietly = TRUE)
+load("my_data.RData")
+source("helper_functions.R")
+my_red <- rgb(229, 29, 41, maxColorValue = 255)
+
+# -----------------------------------------------------------------------------
+
+# data cleaning
+# ...
+
+# -----------------------------------------------------------------------------
+
+# data exploration
+summary(my_cleaned_data)
+plot(my_cleaned_data$height ~ my_cleaned_data$age)
+
+# -----------------------------------------------------------------------------
+```
+</div>
+
+If your script uses add-on packages, check their availability all at once at the very beginning of the file. This is more transparent than sprinkling `library()` 
+calls throughout your code or having hidden dependencies that are loaded in a 
+startup file, such as `.Rprofile`.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+requireNamespace("package_name", quietly = TRUE)
+requireNamespace("another_package", quietly = TRUE)
+
+# at daqana -- thanks to our internal dqutils package -- you can also use
+required_packages <- c("package_name", "another_package", "yet_another_package")
+dqutils::requireNamespaces(packages = required_packages, quietly = TRUE)
+```
+</div>
+
+You could load all the packages via calls to `library()` or -- as recommended -- only check their availability via `requireNamespace()`, and refer to all non-base functions explicitly via `package::function()`. 
+The same function names might have been assigned in different packages with 
+almost certainly differing aims, scopes and implementations. 
+Using the `package::function()` format makes it explicit and rises awareness 
+of which function is meant to be used and which packages they belong to. 
+To use this format is also best practice within package code!
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+dplyr::filter(my_data, age > 16)
+```
+</div>
+
+Omit the `package::` prefix only if you refer to a function from an `R` base
+package like `stats` and `graphics`, which are typically loaded on start-up.
+
+Make sure that a single file does not get too long. Organize different steps of 
+extensive analyses in separate files. Consider writing (helper) functions in 
+seperate files (and source them at the beginning of your script) or in a package 
+(and refer to them via `my_package::my_function()`).
+
+--------------------------------------------------------------------------------
+
+## Cleaning up
+
+During the development of your analysis scripts or functions you will repeatedly comment and uncomment lines of your code and probably also add todo comments. Obviously, when you are done you should clean up.
+
+* There are two linters which check that there are no remaining lines of commented code (outside roxygen blocks, cf. section \@ref(help-pages)) and search for customizable _todo_ phrases: `commented_code_linter` and `todo_comment_linter` (the latter expecting the code phrase immediately after the comment character, e.g. `# to do: ....`). 
+
+Avoid unnecessary trailing white spaces. Though they won't break your code as they might in other programming languages, you should still get rid of them even if only to save some otherwise unnecessarily required storage space. In order to avoid spurious commits in your version control system check for trailing white spaces already during development. 
+
+* In RStudio go to _Global Options > Code > Saving_ and set _Strip trailing horizontal whitespace when saving_. It is applied to R scripts but not to Rmd scripts where trailing white spaces have their purpose (cf. [RStudio commit](https://github.com/rstudio/rstudio/commit/0db2515f38b10daeaf6314694355506fb7903feb)). Alternatively, there is the `trailing_whitespace_linter` which spots all trailing white spaces regardless of file type. 
+
+* You should also set _Ensure that source files end with newline_.
+
+The _newline_ character at the end of a line (also EOL character) ensures that whatever comes after belonges to a new line. To avoid unwanted behavior, source scripts should always have an EOL character at the end of their last lines. 
+
+--------------------------------------------------------------------------------

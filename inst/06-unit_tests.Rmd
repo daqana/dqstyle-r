@@ -1,0 +1,193 @@
+# Unit Tests {#unit-tests}
+
+--------------------------------------------------------------------------------
+
+## Introduction
+
+[Unit tests](http://r-pkgs.had.co.nz/tests.html) help you maintain high quality and error free code that does what it is expected to do.  
+Write unit tests for all of your functions and re-run them whenever you change any code. 
+
+Try to capture as much of a functions code by any exceptions you can think of with dedicated unit tests.
+
+At [daqana](https://www.daqana.com) we agreed to use the powerful and easy-to-use [testthat](https://github.com/r-lib/testthat) package.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+--------------------------------------------------------------------------------
+
+## File names
+
+File names of unit test code should follow the pattern `test-filename-function_name.R`. They must start with the word _test_ in order to be recognized automatically.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+test-add_two.R             # for add_two() in add_two.R
+test-numericals-add_two.R  # for add_two() in numericals.R
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+add_two_test.R
+ut-add_two.R
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Structure
+
+Suppose we have a file `test-create_json.R` and want to test `create_json()` in `create_json.R`. We start with setting the context, then specify the tests which are grouped by messages describing the tested properties.
+
+<div class = "tip">
+```{r}
+# context message will be shown on every of the following tests 
+testthat::context("create_json()")
+
+# test_that message will be shown only if the test fails
+testthat::test_that("create_json() should create the expected JSON", {
+  # the corresponding tests that must be passed
+  testthat::expect_identical(create_json(input_1), expected_json_1)
+  testthat::expect_identical(create_json(input_2), expected_json_2)
+})
+
+# another property to be tested
+testthat::test_that("create_json() should return NULL for NULL input", {
+  testthat::expect_null(create_json(NULL))
+})
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Context
+
+At [daqana](https://www.daqana.com) we typically use a separate context for each function.
+The input to `testthat::context()` should then follow the pattern `"function_name"` or `"filename / function_name"` if more than one function reside in the same file (and filename thus is not identical with the function name). Generally, every function should live in its own file, though.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+
+testthat::context("numericals / add_two") 
+# if add_two() resides in numericals.R
+
+# the tests
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+
+testthat::context("long unnecessary context for the tested function add_two")
+# the tests
+
+testthat::context("another context in same test file")
+# some other tests
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Property test
+
+For every context the properties to be tested are organized by calls to `testthat::test_that()`, which in turn calls a variable number of property-related user-defined tests.
+
+The message to be shown if a property test fails should be written as a full sentence. It should state what the function was expected to return following the pattern `"function() should what-the-function-should-do-or-return (if applicable: under certain conditions)"`.
+
+<div class = "good">
+```{r, eval = FALSE}
+# Good
+
+testthat::context("numericals / add_two") 
+
+testthat::test_that("add_two() should return sum of two numerical values", {
+  testthat::expect_identical(add_two(2, 3), 5)
+  testthat::expect_identical(add_two(0, 0), 0)
+})
+
+testthat::test_that(
+  "add_two() should throw an error for non-numerical inputs", {
+    testthat::expect_error(add_two("foo", "bar"))
+  }
+)
+```
+</div>
+
+<div class = "bad">
+```{r, eval = FALSE}
+# Bad
+
+testthat::context("long unnecessary context for the tested function add_two")
+
+# not describing what is being tested!
+testthat::test_that("everything works", {
+  testthat::expect_identical(add_two(2, 3), 5)
+  # pointless test
+  testthat::expect_identical(add_two(1, 2), add_two(1, 2))
+})  
+
+# empty description!
+testthat::test_that("", { 
+  testthat::expect_true(another_function("foo"))
+})
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## lintr {-}
+
+Save the list of our customized linters to a file [`daqana_linters.R`](../../daqana_linters.R) (click for download) and add it to your package project directory.
+
+<div class = "good">
+```{r, code = readLines(file.path("..", "daqana_linters.R"))}
+```
+</div>
+
+You can also add a `.lintr` config file as mentioned in the start page section [lintr and styler], which would simply look like the following and should also reside in your package project directory.
+
+<div class = "tip">
+```
+linters: source("daqana_linters.R"); daqana_linters 
+       
+```
+</div>
+
+Test that there are no lints in your package. The linters are applied to all R files in the package. Files that should be excluded from checks can be passed to argument `exclusions` as a list of paths relative to `path`. Alternatively, add them to the config file.
+
+<div class = "tip">
+```{r}
+# without a config file
+testthat::context("Test style (lintr)")
+testthat::test_that("Style should be lint-free", {
+  testthat::skip_if_not(
+    requireNamespace("lintr", quietly = TRUE),
+    message = "Package lintr must be installed!"
+  )
+  # source("daqana_linters.R")         # only needed when not using dqutils
+  lintr::expect_lint_free(
+    path = ".", relative_path = TRUE, exclusions = NULL, # default settings
+    linters = daqana_linters
+  )
+})
+  
+# or with our .lintr config file
+testthat::context("Test style (lintr)")
+testthat::test_that("Style should be lint-free", {
+  testthat::skip_if_not(
+    requireNamespace("lintr", quietly = TRUE),
+    message = "Package lintr must be installed!"
+  )
+  lintr::expect_lint_free()
+})
+```
+</div>
+
+
+--------------------------------------------------------------------------------

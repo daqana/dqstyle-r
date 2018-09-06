@@ -1,0 +1,345 @@
+# (PART) Packages {-}
+
+# Help Pages {#help-pages}
+
+--------------------------------------------------------------------------------
+
+## Introduction
+
+[Documentation of code](http://r-pkgs.had.co.nz/man.html) is essential, 
+even if the only person using your code is future-you. 
+Use [roxygen2](https://github.com/klutometis/roxygen) with enabled [markdown](https://github.com/klutometis/roxygen/blob/master/vignettes/markdown.Rmd)
+support to keep your documentation close to the code.     
+`` #` `` starts a roxygen comment, i.e. distinction from regular comments is through the backtick after the hashtag. These comments come before the object or function you are adding the documentation onto.
+
+All help pages of *functions* should specify the following tags:
+
+ - `@title`,
+ - `@description`, 
+ - `@param` (one for each function parameter/argument),
+ - `@return`, 
+ - `@export` (if the function is supposed to be visible outside of the package), 
+ - `@author` (should be of form `firstname.lastname` at [daqana](https://www.daqana.com)) and 
+ - `@examples`.
+ 
+If applicable, also use `@family`, `@section`, `@keywords internal`.      
+Nice to have: `@aliases`, `@seealso`.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+--------------------------------------------------------------------------------
+
+## Title and Description
+
+For the title, describe concisely what the function does in the very 
+first line of your function documentation. Titles should use sentence case 
+but _not_ end with a `.` (full stop).
+
+There is no need to use the explicit `@title` or `@description` tags, except 
+in the case of the description if it is multiple paragraphs or includes 
+more complex formatting like a bulleted list. I recommend to be explicit and, 
+thus, to always use the tags.
+
+<div class = "bad">
+```{r}
+# Bad
+
+#' @title
+#' combine values
+#'
+
+#' @title
+#' Combine values into a vector or list.
+#'
+
+#' Combine values into a vector or list
+#' 
+#' This is a generic function which combines its arguments.
+#'
+```
+</div>
+
+<div class = "good">
+```{r}
+# Good
+
+#' @title
+#' Combine values into a vector or list
+#' 
+#' @description
+#' This is a generic function which combines its arguments.
+#'
+
+#' @title
+#' Apply a function to each element of a vector
+#'
+#' @description
+#' The map function transform the input, returning a vector the same length
+#' as the input. `map()` returns a list or a data frame; `map_lgl()`,
+#' `map_int()`, `map_dbl()` and `map_chr()` return vectors of the
+#' corresponding type (or die trying); `map_dfr()` and `map_dfc()` return
+#' data frames created by row-binding and column-binding respectively.
+#' They require dplyr to be installed.
+
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Indention
+
+Always indent with one space after `#'`. If any description corresponding to a 
+`roxygen` tag spans over multiple lines, add another two spaces of extra 
+indention.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @param key The bare (unquoted) name of the column whose values will be used 
+#'   as column headings. 
+```
+</div>
+
+Alternatively, tags that span over multiple lines (like `@description`,
+`@examples` and `@section`) can have the corresponding tag on its own line and 
+then subsequent lines don't need extra indention.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @examples
+#' 1 + 1
+#' sin(pi)
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Documenting Parameters
+
+For most tags, like `@param`, `@seealso` and `@return`, the text should be a 
+sentence, starting with a capital letter and ending with a full stop.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @param key The bare (unquoted) name of the column whose values will be used 
+#'   as column headings. 
+```
+</div>
+
+If some functions share parameters, you can use `@inheritParams` to avoid 
+duplication of content in multiple places.
+
+<div class = "tip">
+```{r}
+# Tip
+
+#' @inheritParams argument function_to_inherit_from
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Capitalization and Full Stops
+
+For all bullets, enumerations, argument descriptions and the like, use sentence
+case and put a period at the end of each text element, even if it is only a few 
+words. However, avoid capitalization of function names or packages since R is 
+case sensitive. Use a colon before enumerations or bulleted lists.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @details In the following, we present the bullets of the list:
+#' * Four cats are few animals.
+#' * forcats is a package.
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Reference
+
+Cross-referencing is encouraged, both within R's help file system as well as to 
+external resources. Include parentheses after function names when referencing 
+function calls.
+
+When referring to other sections in the documentation, use single quotes and 
+title case.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @seealso [fct_lump()] 
+
+#' @param p1 Another parameter. See 'Details'.
+```
+</div>
+
+<div class = "bad">
+```{r}
+# Bad
+
+#' @seealso [fct_lump] 
+
+#' @param p1 Another parameter. See "details".
+```
+</div>
+
+If you have a family of related functions, you can use the `@family` tag with a 
+shared family name to automatically add appropriate lists and interlinks to the 
+`@seealso` section. Family names are plural.   
+In `dplyr`, the verbs `arrange()`, `filter()`, `mutate()`, `slice()`, 
+`summarize()` form the family of single table verbs. Each documentation contains
+the following line:
+
+<div class = "tip">
+```{r}
+# Tip
+
+#' @family single table verbs
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Line Break
+
+Leave one line blank before / after each description.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @section Tidy data:
+#' When applied to a data frame, row names are silently dropped. To preserve,
+#' convert to an explicit variable with [tibble::rownames_to_column()].
+#'
+#' @section Scoped filtering:
+#' The three [scoped] variants ([filter_all()], [filter_if()] and
+#' [filter_at()]) make it easy to apply a filtering condition to a
+#' selection of variables.
+```
+</div>
+
+If you want to insert a line break within a section, also leave a line break in 
+the roxygen comments.
+
+<div class = "tip">
+```{r}
+# Tip
+
+#' @param ... Data frames to combine.
+#'
+#'   Each argument can either be a data frame, a list that could be a data
+#'   frame, or a list of data frames.
+#'
+#'   When row-binding, columns are matched by name, and any missing
+#'   columns with be filled with NA.
+#'
+#'   When column-binding, rows are matched by position, so all data
+#'   frames must have the same number of rows. To match by value, not
+#'   position, see [join()].
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Code Font
+
+Text that contains valid R code should be marked as such using `` `code` `` (backticks around `code`).
+
+* Function names, should be followed by `()`, e.g. `tibble()`.
+* Function arguments, e.g. `na.rm`. 
+* Values, e.g. `TRUE`, `FALSE`, `NA`, `NaN`, `...`, `NULL` 
+* Literal R code, e.g. `mean(x, na.rm = TRUE)`
+
+To refer to the R language, use `\R`.
+Do not use code font for package names. If package name is ambiguous in the 
+context, disambiguate with words, e.g. "the foo package".
+
+
+--------------------------------------------------------------------------------
+
+## Internal Functions
+
+Internal functions should be documented with `#'` comments as per usual. 
+Use the `@noRd` tag to prevent `.Rd` files from being generated.
+
+<div class = "good">
+```{r}
+# Good
+
+#' @title Drop last
+#'
+#' @description 
+#' Drops the last element from a vector.
+#'
+#' @param x A vector object to be trimmed.
+#'
+#' @noRd
+```
+</div>
+
+--------------------------------------------------------------------------------
+
+## Deprecating Functions
+
+The following example is taken from https://stackoverflow.com/a/10145627.
+<!--(Also see answer https://stackoverflow.com/a/14036524 below.)-->
+
+<div class = "good">
+```{r}
+# Good
+
+## before
+
+#' @title Alchemy function with too long name
+#' @description Turn lead into gold.
+#' @param lead Input material.
+#' @return gold
+#' @export
+transmute_my_carefully_crafted_data_structure_into_gold <- function(lead) {
+  # todo: figure out how to create gold
+  # look like we are doing something
+  Sys.sleep(10)
+  return("gold")
+}
+
+## after
+
+#' @title Alchemy function with too long name
+#' @description Deprecated function. Turn lead into gold.
+#' @param lead Input material.
+#' @return gold
+#' @export
+#' @rdname package-deprecated
+#' @seealso \code{\link{alchemy}}
+transmute_my_carefully_crafted_data_structure_into_gold <- function(lead) {
+  .Deprecated("alchemy", package = "your_package_name")
+  alchemy(lead)
+}
+
+#' @title Alchemy function with appropriate name
+#' @description Turn lead into gold.
+#' @param lead Input material.
+#' @return gold
+#' @export
+alchemy <- function(lead) {
+  # todo: figure out how to create gold
+  # look like we are doing something
+  Sys.sleep(10)
+  return("gold")
+}
+```
+</div>
+
+--------------------------------------------------------------------------------

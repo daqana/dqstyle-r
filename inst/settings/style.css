@@ -1,0 +1,116 @@
+
+/* ------------------------------------------------------------------------- */
+
+/*
+settings:
+
+backgound highlighting of code chunks on a per chunk basis via div and css
+https://stackoverflow.com/questions/41030477/changing-chunk-background-color-in-rmarkdown
+https://github.com/yihui/knitr/issues/1333
+
+use colorblind friendly colors (with some transparency)
+http://colorbrewer2.org/#type=diverging&scheme=PiYG&n=3
+*/
+
+div.good pre { background-color: #a1d76a99 !important; }
+div.bad pre { background-color: #e9a3c999 !important; }
+div.tip pre { background-color: #8a9fa644 !important; }
+
+div.good pre.r { background-color: #a1d76a99 !important; }
+div.bad pre.r { background-color: #e9a3c999 !important; }
+
+div.tip pre.r { background-color: #8a9fa644 !important; }       /* #ffffbf99 */
+
+
+div.dqbox { background-color: #ff8f0055 !important; }
+
+/* ------------------------------------------------------------------------- */
+
+
+/* from 2017-11-13_greylabelz_bootstrap.css */
+/* define color variables, works only in browser but not in rstudio viewer */
+:root {
+    --color-primary: #ff8f00;                                                   /* orange */
+    --color-secondary: #ff4f00;                                                 /* brown */
+    --color-gray: #8a9fa6;                                                      /* gray */
+    --color-black: #000000;                                                     /* black */
+    --color-background: #ffffff;                                                /* white */    
+ } 
+ 
+/* set link colors */ 
+.book .book-summary nav .summary li a:hover,
+.book .book-summary nav .summary li.active a {
+  color: var(--color-primary);
+}
+
+.book .book-body .body-inner .page-wrapper .page-inner section a,
+.book .book-body .body-inner .book-header a {
+    color: var(--color-primary);
+}
+
+.book .book-body .body-inner .page-wrapper .page-inner section a:hover,
+.book .book-body .body-inner .book-header a:hover {
+    color: var(--color-secondary);
+}
+
+/* set body fonts and colors */
+body {
+  font-family: 'Noto Serif', serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-black);
+  background-color: var(--color-background);
+}
+
+h1 {
+  font-family: 'Monda', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+h2 {
+  font-family: 'Monda', sans-serif;
+  font-size: 20px;
+}
+
+h3 {
+  font-family: 'Monda', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------------- */
+
+caption {
+  color: #777; 
+}
+p code, li code {
+  white-space: inherit;
+  background-color: #8a9fa644 !important;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+.book .book-header h1 {
+  opacity: 1;
+  text-align: left;
+}
+
+#header .title {
+  margin-bottom: 0em;
+}
+#header h4.author {
+  margin: 0;
+  color: var(--color-gray);
+}
+#header h4.author em {
+  font-style: normal;
+}
+
+/* ------------------------------------------------------------------------- */
