@@ -66,7 +66,7 @@ Conformance with a good portion of this style guide can be checked in an automat
 
 The [`styler`](https://github.com/r-lib/styler) package not only checks compliance with a specified style guide but also applies its rules to any discrepancies encountered. The package evolved from a Google Summer of Code project in 2017 and is under active development. It is tidyverse-oriented, i.e. its rules so far ensure compliance with aspects of the tidyverse style guide. Minor aspects are directly customizable, others would require their own rules to be written. We `r color_format("are planning to")` bundle the existing customized rules into a `daqana_style()` function and might extend it to widly cover this guides recommendations. The rules already covered (spaces, indention, line breaks and tokens) `r color_format("will be")` mentioned throughout the text.
 
-RStudio add-ins exist for both packages with default settings. To customize the linter add-in (on a per project basis) add the [`daqana_linters.R`](../../daqana_linters.R) file (detailed in section \@ref(unit-tests)) and a `.lintr` config file to your RStudio project directory. The config file should simply look like the following (mind the newline): 
+RStudio add-ins exist for both packages with default settings. To customize the linter add-in (on a per project basis) add the [`daqana_linters.R`](../daqana_linters.R) file (detailed in section \@ref(unit-tests)) and a `.lintr` config file to your RStudio project directory. The config file should simply look like the following (mind the newline): 
 
 <div class = "tip">
 ```
